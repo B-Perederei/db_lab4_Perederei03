@@ -1,3 +1,5 @@
+-- Trigger for deleting all records of a game in all tables of database
+
 DROP TRIGGER IF EXISTS deleteGameFromDB ON Game;
 CREATE OR REPLACE FUNCTION deleteGameRecordsFromDB() RETURNS trigger 
 LANGUAGE 'plpgsql'
