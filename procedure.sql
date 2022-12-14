@@ -1,4 +1,4 @@
--- Changing id and name of a given region in Region and GamePlatformRegionSales tables
+-- Procedure for changing id and name of a given region in Region and GamePlatformRegionSales tables
 
 DROP PROCEDURE IF EXISTS changeRegion(old_region_id varchar, new_region_id varchar, new_region_name varchar);
 CREATE OR REPLACE PROCEDURE changeRegion(old_region_id varchar, new_region_id varchar, new_region_name varchar)

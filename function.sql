@@ -7,9 +7,9 @@ AS $$
 DECLARE
 	count int;
 BEGIN 
-    count := (SELECT COUNT(*) 
-		   FROM game INNER JOIN gameplatform ON game.game_id = gameplatform.game_id 
-	   	   WHERE game_publisher = publisher);
+	count := (SELECT COUNT(*) 
+			  FROM game INNER JOIN gameplatform ON game.game_id = gameplatform.game_id 
+	   	      WHERE game_publisher = publisher);
 	RETURN count;
-END
+END;
 $$; 
