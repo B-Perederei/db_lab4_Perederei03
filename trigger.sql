@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION deleteGameRecordsFromDB() RETURNS trigger
 LANGUAGE 'plpgsql'
 AS $$
 BEGIN
- 	DELETE FROM gameplatformregionsales WHERE game_id = OLD.game_id;
+	DELETE FROM gameplatformregionsales WHERE game_id = OLD.game_id;
 	DELETE FROM gameplatform WHERE game_id = OLD.game_id;
 	RETURN OLD;
 END;
