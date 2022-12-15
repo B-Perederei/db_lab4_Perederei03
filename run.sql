@@ -8,7 +8,7 @@ CALL changeRegion('EU', 'EU&U', 'European Union and Ukraine');
 SELECT * FROM game;
 SELECT * FROM gameplatform;
 
-SELECT * FROM publisherReleases('Electronic Arts');
+SELECT * FROM getTotalCopiesSoldByNow(2, 'PS3');
 
 -- Calling trigger
 SELECT * FROM game;
