@@ -1,15 +1,16 @@
--- Function for getting number of releases of given game publisher
+-- Function for getting most recent statistics of total sold copies of given game on given platform
 
-DROP FUNCTION IF EXISTS publisherReleases(publisher varchar);
-CREATE OR REPLACE FUNCTION publisherReleases(publisher varchar) RETURNS int
+DROP FUNCTION IF EXISTS getTotalCopiesSoldByNow(int, varchar);
+CREATE OR REPLACE FUNCTION getTotalCopiesSoldByNow(g_id int, p_id varchar) RETURNS numeric(4, 2)
 LANGUAGE plpgsql
 AS $$
 DECLARE
-	count int;
+	sum numeric(4, 2);
 BEGIN 
-	count := (SELECT COUNT(*) 
-			  FROM game INNER JOIN gameplatform ON game.game_id = gameplatform.game_id 
-	   	      WHERE game_publisher = publisher);
-	RETURN count;
+	sum := (SELECT SUM(copies_sold) FROM (SELECT MAX(copies_sold) AS copies_sold
+								  FROM gameplatformregionsales
+								  WHERE game_id = g_id AND plat_id = p_id
+								  GROUP BY region_id) AS most_recent_sold_copies);
+	RETURN sum;
 END;
-$$; 
+$$;
